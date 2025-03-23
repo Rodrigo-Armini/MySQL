@@ -214,6 +214,7 @@ SELECT CONCAT(nome, " nasceu no dia ", DAY(data_nascimento), " do mês ", MONTH(
 
 -- Exercício 02
 -- USE sistema_proway
+USE sistema_proway;
 
 -- Criar uma tabela chamada de professores com as seguintes colunas:
 -- - id INTEGER
@@ -224,7 +225,7 @@ CREATE TABLE professores (
 );
 
 -- Consultar todos os registros da tabela professores
-SELECT id, nome FROM professores;
+SELECT id, nome, cpf FROM professores;
 
 -- Executar o comando de detalhamento da tabela (DESCRIBE)
 DESCRIBE professores;
@@ -236,26 +237,50 @@ INSERT INTO professores (id, nome) VALUE (1, 'Ana Beatriz Santos');
 INSERT INTO professores (id, nome) VALUE (2, 'Ricardo Gomes');
 
 -- Alterar a tabela adicionando uma coluna cpf CHAR(14)
+ALTER TABLE professores ADD COLUMN cpf CHAR(14);
+
 -- Atualizar o cpf para Ana → '987.654.321-00'
+UPDATE professores SET cpf = '987.654.321-00' WHERE id = 1;
+
 -- Atualizar o cpf para Ricardo → '123.321.123-99'
+UPDATE professores SET cpf = '123.321.123-99' WHERE id = 2;
 
 -- Alterar a tabela adicionando a coluna salario DOUBLE
+ALTER TABLE professores ADD COLUMN salario DOUBLE;
+
 -- Atualizar o salario de Ana → 4500.75
+UPDATE professores SET salario = 4500.75 WHERE id = 1;
+
 -- Atualizar o salario de Ricardo → 5200.50
+UPDATE professores SET salario = 5200.50 WHERE id = 2;
 
 -- Alterar a tabela adicionando a coluna data_admissao DATE
+ALTER TABLE professores ADD COLUMN data_admissao DATE;
+
 -- Atualizar data_admissao de Ana → '2015-08-15'
+UPDATE professores SET data_admissao = '2015-08-15' WHERE id = 1;
+
 -- Atualizar data_admissao de Ricardo → '2018-03-01'
+UPDATE professores SET data_admissao = '2018-03-01' WHERE id = 2;
 
 -- Alterar a tabela adicionando a coluna disciplina VARCHAR(50)
+ALTER TABLE professores ADD COLUMN disciplina VARCHAR(50);
+
 -- Atualizar disciplina de Ana → 'Matemática'
+UPDATE professores SET disciplina = 'Matemática' WHERE id = 1;
+
 -- Atualizar disciplina de Ricardo → 'História'
+UPDATE professores SET disciplina = 'História' WHERE id = 2;
 
 -- Inserir um professor chamado 'Fernando Oliveira' com:
 -- id 3, cpf '321.654.987-11', salario 6100.00, data_admissao '2020-01-10', disciplina 'Física'
+INSERT INTO professores (id, nome, cpf, salario, data_admissao, disciplina) VALUE (3, 'Fernando Oliveira', '321.654.987-11', 6100.00, '2020-01-10', 'Física');
 
 -- Inserir uma professora chamada 'Mariana Ribeiro' com:
 -- id 4, cpf '159.753.486-22', salario 5800.25, data_admissao '2019-05-20', disciplina 'Química'
+INSERT INTO professores (id, nome, cpf, salario, data_admissao, disciplina) VALUE (4, 'Mariana Ribeiro', '159.753.486-22', 5800.25, '2019-05-20', 'Química');
+
+SELECT id, nome, cpf, salario, data_admissao, disciplina FROM professores;
 
 -- Consultar todos os bancos de dados dessa conexão 
 SHOW SCHEMAS;
