@@ -91,3 +91,43 @@ UPDATE cursos SET
 
 -- Consultar os cursos que não tem definido o link
 SELECT id, nome, link FROM cursos WHERE link IS NULL;
+
+
+-- Consultar AND 
+-- Consultar os alunos que nasceram na mês de janeiro até junho
+SELECT
+	nome,
+    MONTH(data_nascimento)
+    FROM alunos
+    WHERE MONTH(data_nascimento) >= 1 AND MONTH(data_nascimento) <= 6
+    ORDER BY MONTH(data_nascimento) ASC;
+-- Consultar os alunos que tem a nota inferior a 7 em todas as notas
+-- Consultar: nome, nota1 , nota2 e nota3
+-- Filtro: nota 1, nota 2 e nota 3 < 7
+SELECT
+	nome, 
+    nota1, 
+    nota2, 
+    nota3, 
+    FORMAT((nota1 + nota2 + nota3) / 3, 2) AS 'Média'
+    FROM alunos
+    WHERE nota1 < 7 AND nota2 < 7 AND nota3 < 7;
+    
+    -- Consultar OR
+    -- Consultar os alunos das disciplinas
+    --  'Educação Física', 'Artes' ou 'Português'
+    SELECT
+    disciplinas, nome
+    FROM alunos
+    WHERE
+    disciplinas = 'Educação Física' OR 
+    disciplinas = 'Português' OR 
+    disciplinas = 'Artes'
+    ORDER BY disciplinas ASC, nome ASC;
+    
+    -- Consultar nome exato
+    select nome from alunos;
+    
+    -- Consultar nome começa com 
+    
+    -- Consultar nome termina com 
